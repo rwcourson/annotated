@@ -5,8 +5,8 @@ Prepared August 1, 2026.
 ## Extension
 
 - `annotated-extension-v0.1.0.zip`
-- Production service: `https://annotated-web-2026.vercel.app`
-- SHA-256: `c23de7466ff4dedf0805474acd50d1be3c6f5814f2fe8af5959d83d0bfa4e51d`
+- Production service: `https://annotated-social.vercel.app`
+- SHA-256: `6f4528dea20513fd93e7b43c93678d2e32e211c8a64a95efac2a66dd49ab2b86`
 
 The unpacked equivalent is in `annotated-extension-v0.1.0/`.
 

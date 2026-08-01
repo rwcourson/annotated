@@ -4,7 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const productionUrl = "https://annotated-web-2026.vercel.app";
+const productionUrl = "https://annotated-social.vercel.app";
 const checks = [];
 
 function check(name, pass, detail) {

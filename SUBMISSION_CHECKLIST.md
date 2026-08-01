@@ -6,19 +6,19 @@ Run `node scripts/release-preflight.mjs` before any deployment review or submiss
 
 - [x] Neon/Postgres Prisma schema and provider switch prepared (`web/prisma/schema.neon.prisma`)
 - [x] Production audio route prepared for Vercel Blob with an explicit failure when storage is absent
-- [ ] Neon project created and `DATABASE_PROVIDER` / `DATABASE_URL` set
-- [ ] Vercel Blob store created and `BLOB_READ_WRITE_TOKEN` set
+- [x] Neon project created and `DATABASE_PROVIDER` / `DATABASE_URL` set
+- [x] Vercel Blob store created and `BLOB_READ_WRITE_TOKEN` set
 - [x] `AUTH_SECRET`, Google OAuth, and X OAuth production credentials set on the Vercel project
-- [x] Google and X production callbacks registered for `https://annotated-web-2026.vercel.app`
+- [ ] Add Google and X production callbacks for `https://annotated-social.vercel.app`
 - [ ] Complete one successful Google and X sign-in after provider callback changes propagate
-- [ ] Canonical HTTPS site deployed (`NEXT_PUBLIC_SITE_URL` / `AUTH_URL` are already set)
-- [ ] Database initialized with `npm run neon:push`
+- [x] Canonical HTTPS site deployed at `https://annotated-social.vercel.app`
+- [x] Database initialized with the Postgres Prisma schema
 - [ ] Publish, redeploy, and confirm annotation plus recorded audio persist
 
 ## Extension
 
 - [x] Build final ZIP with `node scripts/release-extension.mjs --site-url=https://...`
-- [x] Set the extension source and packaged default to `https://annotated-web-2026.vercel.app`
+- [x] Set the extension source and packaged default to `https://annotated-social.vercel.app`
 - [x] Prepare real 1280×800 homepage and feed screenshots in `release/screenshots/`
 - [ ] Load the staged release directory unpacked in Chrome
 - [ ] Complete article, YouTube, and podcast journeys

@@ -59,7 +59,7 @@ Annotated is a Chrome side-panel product for clipping an article passage, a YouT
 
 ```text
 node extension/test/smoke.mjs                          # 77 passed, 0 failed
-node scripts/release-extension.mjs --site-url=https://annotated-web-2026.vercel.app
+node scripts/release-extension.mjs --site-url=https://annotated-social.vercel.app
 unzip -p release/annotated-extension-v0.1.0.zip ...   # production URL confirmed
 node --check extension/{sidepanel,background,content}.js
 cd web && npx prisma generate && npx prisma migrate deploy

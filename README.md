@@ -25,13 +25,13 @@ A Chrome sidebar extension + web app for clipping and annotating media from anyw
 
 2. **Extension**
 
-   - `chrome://extensions` → Developer mode → **Load unpacked** → select `extension/`. The extension defaults to `https://annotated-web-2026.vercel.app`; change the service URL under Settings when developing locally.
+   - `chrome://extensions` → Developer mode → **Load unpacked** → select `extension/`. The extension defaults to `https://annotated-social.vercel.app`; change the service URL under Settings when developing locally.
    - Click the toolbar icon to open the side panel → **Connect account**. Sign in on the web page; the one-time, nonce-protected handoff reconnects the sidebar automatically. Manual token entry remains available under **Manual setup** for recovery.
    - On any page: select text → right-click → "Annotate selection with annotated", or open the panel and use the Clip tab. On YouTube, use the "Now" buttons to set clip start/end (90s max is enforced).
 
 ## Contest readiness
 
-The implemented behavior and the remaining deployment/submission gates are tracked in [`ACCEPTANCE.md`](./ACCEPTANCE.md). Local acceptance covers the sidebar capture flow, source attribution, 90-second enforcement, public social surfaces, comments, follows, claims, commentary, and account handoff. Production OAuth credentials and callbacks are configured. Durable hosted storage, deployed OAuth verification, and a physical unpacked-extension pass remain open until Neon and Blob are provisioned and the final environment exists.
+The implemented behavior and the remaining submission gates are tracked in [`ACCEPTANCE.md`](./ACCEPTANCE.md). Local acceptance covers the sidebar capture flow, source attribution, 90-second enforcement, public social surfaces, comments, follows, claims, commentary, and account handoff. The production deployment uses Neon Postgres and Vercel Blob. Live OAuth verification and a physical unpacked-extension pass remain open release gates.
 
 ## Design
 

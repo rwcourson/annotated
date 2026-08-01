@@ -1,5 +1,6 @@
 .DS_Store
 .design-qa/
+.vercel/
 web/.agents/
 
 # Local secrets and provider exports

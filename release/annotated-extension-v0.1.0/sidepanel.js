@@ -182,16 +182,13 @@ async function saveSettings() {
 }
 
 function renderAvatar() {
-  const fallback = ((state.user && (state.user.name || state.user.username)) || 'A').trim().charAt(0).toUpperCase();
   els.settingsAvatar.textContent = '';
-  if (state.user && state.user.image) {
-    const img = document.createElement('img');
-    img.src = state.user.image;
-    img.alt = '';
-    els.settingsAvatar.appendChild(img);
-  } else {
-    els.settingsAvatar.textContent = fallback;
-  }
+  const img = document.createElement('img');
+  img.src = state.user && state.user.image
+    ? state.user.image
+    : chrome.runtime.getURL('assets/default-profile.webp');
+  img.alt = '';
+  els.settingsAvatar.appendChild(img);
 }
 
 function renderAuthUI() {
@@ -603,10 +600,12 @@ function feedCard(a) {
   top.className = 'feed-card-top';
   const avatar = document.createElement('span');
   avatar.className = 'feed-avatar';
-  const authorName = a.author && typeof a.author === 'object'
-    ? (a.author.name || a.author.username || '')
-    : (a.authorName || '');
-  avatar.textContent = (authorName || 'A').charAt(0).toUpperCase();
+  const avatarImage = document.createElement('img');
+  avatarImage.src = a.author && a.author.image
+    ? a.author.image
+    : chrome.runtime.getURL('assets/default-profile.webp');
+  avatarImage.alt = '';
+  avatar.appendChild(avatarImage);
   const badge = document.createElement('span');
   const type = a.type || 'article';
   badge.className = 'badge badge-' + type;

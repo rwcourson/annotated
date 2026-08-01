@@ -17,7 +17,7 @@ const values = Object.fromEntries(
     }),
 );
 
-const productionUrl = "https://annotated-web-2026.vercel.app";
+const productionUrl = "https://annotated-social.vercel.app";
 const productionValues = {
   AUTH_SECRET: values.AUTH_SECRET,
   AUTH_GOOGLE_ID: values.AUTH_GOOGLE_ID,
@@ -25,6 +25,7 @@ const productionValues = {
   AUTH_TWITTER_ID: values.AUTH_TWITTER_ID,
   AUTH_TWITTER_SECRET: values.AUTH_TWITTER_SECRET,
   AUTH_URL: productionUrl,
+  NEXTAUTH_URL: productionUrl,
   AUTH_TRUST_HOST: "true",
   NEXT_PUBLIC_SITE_URL: productionUrl,
 };

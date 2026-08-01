@@ -6,7 +6,7 @@
   'use strict';
 
   var MAX_CLIP_SECONDS = 90;
-  var DEFAULT_BASE_URL = "https://annotated-web-2026.vercel.app";
+  var DEFAULT_BASE_URL = "https://annotated-social.vercel.app";
 
   // Documented API contract with the web app.
   var API = {

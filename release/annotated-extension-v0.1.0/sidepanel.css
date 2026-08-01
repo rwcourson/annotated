@@ -279,12 +279,14 @@ input:focus-visible, textarea:focus-visible { border-color: var(--purple); box-s
   height: 26px;
   flex: none;
   place-items: center;
+  overflow: hidden;
   border-radius: 50%;
   background: var(--soft);
   color: var(--coral-dark);
   font-size: 10px;
   font-weight: 700;
 }
+.feed-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .badge { flex: none; padding: 4px 8px; border-radius: 999px; font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .badge-article { color: #4336b8; background: #efecff; }
 .badge-video { color: #bd3d2b; background: #fff0ec; }

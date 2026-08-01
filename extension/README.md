@@ -6,7 +6,7 @@ Manifest V3, no build step: plain JS/HTML/CSS, loads unpacked directly. The prim
 
 ## Load it
 
-1. Start the web app locally at `http://localhost:3000`, or use the production default at `https://annotated-web-2026.vercel.app` once deployed.
+1. Start the web app locally at `http://localhost:3000`, or use the production service at `https://annotated-social.vercel.app`.
 2. Open `chrome://extensions` in Chrome.
 3. Toggle **Developer mode** (top right).
 4. Click **Load unpacked** and select this `extension/` directory.

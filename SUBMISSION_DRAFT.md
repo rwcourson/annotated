@@ -4,7 +4,7 @@ Do not submit until the user explicitly approves the final entry.
 
 - Your name: Robert Courson
 - Twitter / X handle: `@robertcourson`
-- Site link: `https://annotated-web-2026.vercel.app` (reserved, not deployed yet)
+- Site link: `https://annotated-social.vercel.app`
 - Demo video link: pending
 
 The contest form currently marks **Your name** and **Demo video link** as required. The X handle and site link are optional in the form, but both should be included in the finished entry.
