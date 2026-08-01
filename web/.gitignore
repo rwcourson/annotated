@@ -1,0 +1,21 @@
+node_modules/
+.next/
+out/
+build/
+
+# env & db
+.env
+.env*.local
+prisma/dev.db
+prisma/dev.db-journal
+prisma/migrations/migration_lock.toml
+
+# uploads (keep dir via .gitkeep)
+public/uploads/*
+!public/uploads/.gitkeep
+
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store
+.vercel
+.env*

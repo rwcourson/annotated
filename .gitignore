@@ -1,0 +1,22 @@
+.DS_Store
+.design-qa/
+web/.agents/
+
+# Local secrets and provider exports
+web/.env
+web/.env.*
+!web/.env.example
+
+# Local build and database state
+web/.next/
+web/node_modules/
+web/prisma/dev.db
+web/prisma/dev.db-journal
+web/public/uploads/*
+!web/public/uploads/.gitkeep
+
+# Vercel project linkage and generated tokens
+web/.vercel/
+
+# TypeScript caches
+web/*.tsbuildinfo

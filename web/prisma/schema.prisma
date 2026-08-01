@@ -1,0 +1,140 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ---------- Auth.js standard models ----------
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  username      String?   @unique
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime  @default(now())
+
+  accounts    Account[]
+  sessions    Session[]
+  annotations Annotation[]
+  comments    Comment[]
+  claims      Claim[]
+  apiTokens   ApiToken[]
+  following   Follow[]      @relation("follower")
+  followers   Follow[]      @relation("followee")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ---------- annotated domain models ----------
+
+model Annotation {
+  id              String    @id @default(cuid())
+  userId          String
+  type            String // "article" | "video" | "audio"
+  sourceUrl       String
+  mediaUrl        String? // detected direct media stream; sourceUrl remains the attributed page
+  title           String
+  siteName        String?
+  author          String?
+  publishedAt     DateTime?
+  quote           String? // highlighted passage (articles)
+  startSec        Int?
+  endSec          Int? // video/audio clip window; endSec - startSec must be 1..90
+  comment         String? // text commentary
+  commentAudioUrl String? // recorded audio commentary
+  createdAt       DateTime  @default(now())
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comments Comment[]
+  claims   Claim[]
+
+  @@index([createdAt])
+  @@index([userId])
+}
+
+model Comment {
+  id           String   @id @default(cuid())
+  annotationId String
+  userId       String
+  text         String
+  createdAt    DateTime @default(now())
+
+  annotation Annotation @relation(fields: [annotationId], references: [id], onDelete: Cascade)
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([annotationId])
+}
+
+model Follow {
+  followerId String
+  followeeId String
+  createdAt  DateTime @default(now())
+
+  follower User @relation("follower", fields: [followerId], references: [id], onDelete: Cascade)
+  followee User @relation("followee", fields: [followeeId], references: [id], onDelete: Cascade)
+
+  @@id([followerId, followeeId])
+  @@index([followeeId])
+}
+
+model Claim {
+  id           String   @id @default(cuid())
+  annotationId String
+  userId       String?
+  reason       String
+  contact      String?
+  createdAt    DateTime @default(now())
+
+  annotation Annotation @relation(fields: [annotationId], references: [id], onDelete: Cascade)
+  user       User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([annotationId])
+}
+
+model ApiToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
