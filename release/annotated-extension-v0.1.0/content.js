@@ -117,9 +117,16 @@
     }
     if (!el) return { found: false, isYouTube, videoId };
 
+    const mediaSrc = el.currentSrc || el.src || location.href;
+    let mediaPath = '';
+    try {
+      mediaPath = new URL(mediaSrc, location.href).pathname.toLowerCase();
+    } catch (e) { /* retain empty path */ }
+    const isAudioResource = /\.(mp3|m4a|aac|wav|ogg|oga|opus|flac)$/.test(mediaPath);
+
     return {
       found: true,
-      kind: el.tagName === 'VIDEO' ? 'video' : 'audio',
+      kind: el.tagName === 'AUDIO' || isAudioResource ? 'audio' : 'video',
       currentTime: el.currentTime || 0,
       duration: el.duration && isFinite(el.duration) ? el.duration : 0,
       paused: el.paused,

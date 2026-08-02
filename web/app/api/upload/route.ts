@@ -34,14 +34,31 @@ export async function POST(req: Request) {
   }
 
   const dataUrl = typeof body.dataUrl === "string" ? body.dataUrl : "";
-  const match = dataUrl.match(/^data:([a-z0-9/-]+);base64,(.+)$/is);
-  if (!match) {
+  const match = dataUrl.match(/^data:([^,]+),([\s\S]*)$/i);
+  const headerParts = match ? match[1].split(";") : [];
+  const mime = (headerParts.shift() ?? "").toLowerCase();
+  const encoding = (headerParts.pop() ?? "").toLowerCase();
+  const validParameters = headerParts.every((part) =>
+    /^[a-z0-9!#$&^_.+-]+=[^;,]+$/i.test(part)
+  );
+  const encoded = match ? match[2].replace(/\s/g, "") : "";
+  const validBase64 =
+    encoded.length > 0 &&
+    encoded.length % 4 === 0 &&
+    /^[a-z0-9+/]*={0,2}$/i.test(encoded);
+
+  if (
+    !match ||
+    !/^[a-z0-9][a-z0-9.+-]*\/[a-z0-9][a-z0-9.+-]*$/i.test(mime) ||
+    encoding !== "base64" ||
+    !validParameters ||
+    !validBase64
+  ) {
     return NextResponse.json(
       { error: "dataUrl must be a base64 data URL" },
       { status: 400 }
     );
   }
-  const mime = match[1].toLowerCase();
   const ext = EXT_BY_MIME[mime];
   if (!ext) {
     return NextResponse.json(
@@ -52,7 +69,7 @@ export async function POST(req: Request) {
 
   let buffer: Buffer;
   try {
-    buffer = Buffer.from(match[2], "base64");
+    buffer = Buffer.from(encoded, "base64");
   } catch {
     return NextResponse.json({ error: "invalid base64" }, { status: 400 });
   }

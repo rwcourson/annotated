@@ -292,8 +292,12 @@ function setType(type, fromUser) {
 }
 
 function applyCapture(tab, meta, media, selection) {
+  const previousPageUrl = state.pageUrl;
+  const nextPageUrl = (meta && (meta.canonical || meta.url)) || tab.url || '';
+  const pageChanged = Boolean(previousPageUrl && nextPageUrl && previousPageUrl !== nextPageUrl);
+
   state.tabId = tab.id;
-  state.pageUrl = (meta && (meta.canonical || meta.url)) || tab.url || '';
+  state.pageUrl = nextPageUrl;
   state.pageTitle = (meta && meta.title) || tab.title || '';
   state.mediaUrl = media && media.found && !media.isYouTube ? (media.src || '') : '';
 
@@ -310,14 +314,32 @@ function applyCapture(tab, meta, media, selection) {
   if (!state.typeOverridden) setType(detected, false);
   else setType(state.type, false);
 
-  // Auto-fill editable fields (don't clobber text the user already typed).
-  if (!els.title.value) els.title.value = state.pageTitle;
-  if (!els.siteName.value) els.siteName.value = (meta && meta.siteName) || '';
-  if (!els.author.value && meta && meta.author) els.author.value = meta.author;
-  if (!els.published.value && meta && meta.publishedAt) els.published.value = meta.publishedAt;
+  let detectedSiteName = (meta && meta.siteName) || '';
+  if (!detectedSiteName && state.pageUrl) {
+    try {
+      detectedSiteName = new URL(state.pageUrl).hostname.replace(/^www\./, '');
+    } catch (err) { /* retain empty fallback */ }
+  }
 
-  if (selection && selection.text && !els.quote.value) {
-    els.quote.value = selection.text;
+  // A newly active source must never inherit metadata or clip bounds from the
+  // previous page. On a same-page refresh, preserve anything the user edited.
+  if (pageChanged) {
+    els.title.value = state.pageTitle;
+    els.siteName.value = detectedSiteName;
+    els.author.value = (meta && meta.author) || '';
+    els.published.value = (meta && meta.publishedAt) || '';
+    els.quote.value = (selection && selection.text) || '';
+    els.comment.value = '';
+    els.startTime.value = '';
+    els.endTime.value = '';
+    discardRecording();
+    showError(els.formError, '');
+  } else {
+    if (!els.title.value) els.title.value = state.pageTitle;
+    if (!els.siteName.value) els.siteName.value = detectedSiteName;
+    if (!els.author.value && meta && meta.author) els.author.value = meta.author;
+    if (!els.published.value && meta && meta.publishedAt) els.published.value = meta.publishedAt;
+    if (selection && selection.text && !els.quote.value) els.quote.value = selection.text;
   }
 
   // Media note + default range.
@@ -402,6 +424,9 @@ function updateDurationIndicator() {
   }
   const v = S.validateClipRange(start, end);
   if (v.ok) {
+    if (els.formError.textContent === 'Clips are limited to 90 seconds.') {
+      showError(els.formError, '');
+    }
     els.clipDuration.textContent = 'Clip: ' + Math.round(v.duration) + 's / 90s';
     els.clipDuration.className = 'clip-duration ok';
     return true;

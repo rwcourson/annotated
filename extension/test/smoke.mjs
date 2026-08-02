@@ -150,6 +150,16 @@ ok(
     panelJs.includes("payload.mediaUrl = state.mediaUrl"),
   'direct media stream is preserved separately from the attributed source page'
 );
+ok(
+  panelJs.includes('const pageChanged = Boolean(') &&
+    panelJs.includes('els.title.value = state.pageTitle') &&
+    panelJs.includes("els.quote.value = (selection && selection.text) || ''"),
+  'switching sources replaces stale metadata and passage content'
+);
+ok(
+  panelJs.includes("detectedSiteName = new URL(state.pageUrl).hostname.replace(/^www\\./, '')"),
+  'site name falls back to the detected source hostname'
+);
 
 const backgroundJs = readFileSync(join(root, 'background.js'), 'utf8');
 const contentJs = readFileSync(join(root, 'content.js'), 'utf8');
@@ -158,6 +168,11 @@ ok(backgroundJs.includes("stored.connectNonce === msg.nonce"), 'service worker v
 ok(backgroundJs.includes("isConnectPage"), 'service worker restricts handoff to /connect');
 ok(contentJs.includes("ANNOTATED_EXTENSION_CONNECT"), 'content script relays web account handoff');
 ok(contentJs.includes("ANNOTATED_EXTENSION_CONNECT_RESULT"), 'content script reports handoff result');
+ok(
+  contentJs.includes("/\\.(mp3|m4a|aac|wav|ogg|oga|opus|flac)$/") &&
+    contentJs.includes("el.tagName === 'AUDIO' || isAudioResource ? 'audio' : 'video'"),
+  'standalone audio files remain audio when Chrome renders them in a video element'
+);
 
 /* ---------- 5. account handoff behavior ---------- */
 console.log('\naccount handoff');
