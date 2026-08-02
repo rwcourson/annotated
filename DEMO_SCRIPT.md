@@ -10,3 +10,17 @@ Target length: 2–3 minutes. Record the real unpacked extension and deployed si
 6. Close and reopen Chrome. Show that the sidebar is still connected to the same account.
 
 End on the homepage with the production URL visible. Do not use mock screens or cut around failed states.
+
+## Capture and delivery
+
+- Capture source: macOS display 0 at 30 fps, with the real Chrome window and unpacked sidebar visible.
+- Capture microphone: MacBook Pro Microphone, used for the recorded-commentary step.
+- Review the exported MP4 for readable source URLs, no notifications or private tabs, working audio, and a complete final frame.
+- Upload the approved file with:
+
+  ```sh
+  cd web
+  vercel env run -e production --scope bg-rob -- npm run demo:upload -- /absolute/path/to/annotated-demo.mp4
+  ```
+
+- Save the returned public Blob URL as `DEMO_VIDEO_URL` in Vercel and in `SUBMISSION_DRAFT.md`, then rerun the release preflight.

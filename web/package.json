@@ -12,7 +12,8 @@
     "db:push": "prisma db push",
     "neon:push": "prisma db push --schema prisma/schema.neon.prisma",
     "neon:generate": "prisma generate --schema prisma/schema.neon.prisma",
-    "seed": "tsx prisma/seed.ts"
+    "seed": "tsx prisma/seed.ts",
+    "demo:upload": "node scripts/upload-demo-video.mjs"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

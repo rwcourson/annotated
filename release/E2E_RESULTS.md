@@ -16,3 +16,14 @@ Run with the unpacked directory `release/annotated-extension-v0.1.0/` against th
 - [ ] Closing and reopening Chrome preserves the connected account
 
 Record the browser version, extension version, production URL, date, and any evidence links below.
+
+## Release environment
+
+- Date: August 1, 2026
+- Browser: Google Chrome 150.0.7871.188
+- Extension: Annotated 0.1.0
+- Staged directory: `release/annotated-extension-v0.1.0/`
+- Production URL: `https://annotated-social.vercel.app`
+- Google web login: verified; provider account persisted in Neon
+- X web login: verified; provider account persisted in Neon
+- Sidebar load/reconnect and capture journey: pending the manual `chrome://extensions` load step
