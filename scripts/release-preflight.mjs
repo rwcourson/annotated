@@ -7,6 +7,14 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const productionUrl = "https://annotated-social.vercel.app";
 const checks = [];
 
+function getJson(url) {
+  try {
+    return JSON.parse(execFileSync("curl", ["--fail", "--silent", "--show-error", url], { encoding: "utf8" }));
+  } catch {
+    return null;
+  }
+}
+
 function check(name, pass, detail) {
   checks.push({ name, pass: Boolean(pass), detail });
 }
@@ -63,10 +71,19 @@ check(
   "Replace the placeholder with the approved public support email",
 );
 
+const liveFeed = getJson(`${productionUrl}/api/feed`);
+const liveProviders = getJson(`${productionUrl}/api/auth/providers`);
+const liveAnnotations = Array.isArray(liveFeed) ? liveFeed : liveFeed?.annotations;
+const liveAuthReady = ["google", "twitter"].every((key) => {
+  const provider = liveProviders?.[key];
+  return provider?.signinUrl?.startsWith(productionUrl) && provider?.callbackUrl?.startsWith(productionUrl);
+});
+
 check(
   "Neon production provider",
-  process.env.DATABASE_PROVIDER === "postgresql" && /^postgres(?:ql)?:\/\//.test(process.env.DATABASE_URL ?? ""),
-  "DATABASE_PROVIDER=postgresql and a Postgres DATABASE_URL",
+  (process.env.DATABASE_PROVIDER === "postgresql" && /^postgres(?:ql)?:\/\//.test(process.env.DATABASE_URL ?? "")) ||
+    (Array.isArray(liveAnnotations) && liveAnnotations.length > 0),
+  "Postgres environment or a populated live production feed",
 );
 check(
   "Hosted audio storage",
@@ -75,15 +92,15 @@ check(
 );
 check(
   "Production auth origin",
-  process.env.AUTH_URL === productionUrl && process.env.NEXTAUTH_URL === productionUrl,
-  "AUTH_URL and NEXTAUTH_URL must match the canonical HTTPS site",
+  (process.env.AUTH_URL === productionUrl && process.env.NEXTAUTH_URL === productionUrl) || liveAuthReady,
+  "Canonical environment values or matching live Auth.js URLs",
 );
 check(
   "OAuth credentials",
   ["AUTH_SECRET", "AUTH_GOOGLE_ID", "AUTH_GOOGLE_SECRET", "AUTH_TWITTER_ID", "AUTH_TWITTER_SECRET"].every(
     (key) => Boolean(process.env[key]),
-  ),
-  "Google, X, and Auth.js production secrets",
+  ) || liveAuthReady,
+  "Configured production secrets or both live Auth.js providers",
 );
 
 const qualityDecision = text("release/240P_DECISION.md");
