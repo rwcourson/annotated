@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const fallbackVideoUrl =
-  "https://fczubz6n6ecakkyv.public.blob.vercel-storage.com/demo/annotated-bounty-demo.mov";
+  "https://fczubz6n6ecakkyv.public.blob.vercel-storage.com/demo/annotated-bounty-demo.mp4";
 
 export const metadata: Metadata = {
   title: "One-minute product demo",
@@ -49,10 +49,11 @@ export default function DemoPage() {
               controls
               playsInline
               preload="metadata"
+              poster="/demo/annotated-demo-poster.jpg"
               className="aspect-video w-full bg-black object-contain"
               aria-label="Annotated one-minute product demonstration"
             >
-              <source src={videoUrl} type="video/quicktime" />
+              <source src={videoUrl} type="video/mp4" />
               Your browser cannot play this video. Open the original recording instead.
             </video>
           </div>
