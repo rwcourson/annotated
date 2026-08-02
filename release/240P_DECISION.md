@@ -26,3 +26,10 @@ Evidence:
 Organizer question, ready to send:
 
 > The official YouTube iframe API no longer supports forcing playback quality—`setPlaybackQuality` is a documented no-op—and YouTube policy prohibits downloading or modifying arbitrary videos into our own derivative. Annotated uses the official embed in a 426×240 player and enforces a hard 90-second start/end window. Does that satisfy the bounty's “240p (<480p)” requirement, or is the bounty intentionally requiring a separate rights-cleared transcoding pipeline?
+
+## Organizer-contact status
+
+- Recipient confirmed from LAUNCH's public privacy page: `contact@launch.co`
+- Gmail draft prepared August 1, 2026: `r-970337874464916880`
+- Send status: **not sent**; requires Robert's explicit approval
+- Gate remains blocked until LAUNCH replies in writing or a compliant, rights-cleared transcoding path is implemented and verified
