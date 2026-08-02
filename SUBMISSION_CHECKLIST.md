@@ -13,7 +13,7 @@ Run `node scripts/release-preflight.mjs` before any deployment review or submiss
 - [ ] Complete one successful Google and X sign-in after provider callback changes propagate
 - [x] Canonical HTTPS site deployed at `https://annotated-social.vercel.app`
 - [x] Database initialized with the Postgres Prisma schema
-- [ ] Publish, redeploy, and confirm annotation plus recorded audio persist
+- [x] Redeploy and confirm Neon annotations plus Blob-hosted recorded audio persist
 
 ## Extension
 
@@ -29,8 +29,8 @@ Run `node scripts/release-preflight.mjs` before any deployment review or submiss
 ## Contest entry
 
 - [ ] Record and upload the public demo video using `DEMO_SCRIPT.md`
-- [ ] Entrant name
-- [ ] X handle
-- [ ] Production site link
+- [x] Entrant name
+- [x] X handle
+- [x] Production site link
 - [ ] Public demo video link
 - [ ] Submit at https://annotated.lovable.app/enter

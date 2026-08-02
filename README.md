@@ -17,11 +17,11 @@ A Chrome sidebar extension + web app for clipping and annotating media from anyw
    cd web
    npm install
    npx prisma migrate dev   # creates prisma/dev.db
-   npm run seed             # demo users + annotations (prints a demo API token)
+   npm run seed             # demo users + annotations
    npm run dev              # http://localhost:3000
    ```
 
-   Sign in with the dev **Demo sign in** on `/signin` (no OAuth keys needed locally), or set `AUTH_GOOGLE_ID` / `AUTH_GOOGLE_SECRET` / `AUTH_TWITTER_ID` / `AUTH_TWITTER_SECRET` in `web/.env` for real X/Google OAuth (see `web/.env.example`).
+   Sign in with the dev **Demo sign in** on `/signin` (no OAuth keys needed locally), or set `AUTH_GOOGLE_ID` / `AUTH_GOOGLE_SECRET` / `AUTH_TWITTER_ID` / `AUTH_TWITTER_SECRET` in `web/.env` for real X/Google OAuth (see `web/.env.example`). A demo extension token is created only when `SEED_DEMO_TOKEN` is explicitly supplied.
 
 2. **Extension**
 

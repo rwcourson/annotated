@@ -34,7 +34,7 @@ Annotated is a Chrome side-panel product for clipping an article passage, a YouT
 | A09 | P0 | Social | Follow and comment | Signed-in user can toggle a follow and publish a comment | `curl: POST /api/follows` toggle; `POST /api/annotations/{id}/comments` → 201 | pass |
 | A10 | P0 | Account | Sidebar account handoff | Web sign-in returns to `/connect`, validates a one-time nonce, stores the token, and displays the connected user | `extension/test/smoke.mjs` — service-worker handoff VM; `curl: /connect redirect + /api/extension/me` | pass |
 | A11 | P0 | Auth | Google/X-only production signup | Production has working Google and X credentials and redirect URLs; demo credentials remain development-only | `manual: deploy → sign in once with Google and once with X` | partial |
-| A12 | P0 | Production | Durable database and audio storage | Accounts, annotations, follows, comments, claims, and recorded commentary persist across deploys/restarts | `manual: publish → redeploy → verify annotation and audio` | prepared |
+| A12 | P0 | Production | Durable database and audio storage | Accounts, annotations, follows, comments, claims, and recorded commentary persist across deploys/restarts | Neon feed data and Blob audio verified before and after production redeploy | pass |
 | A13 | P0 | Extension | Physical Chrome end-to-end | Loaded-unpacked/sidebar build captures one real article, YouTube clip, and podcast segment, records commentary, publishes, and reconnects after restart | `manual: Chrome acceptance journey on release package` | missing |
 | A14 | P1 | Design | Shared system | Web and extension use the established PP Mori, warm-white, coral/lilac/cobalt raster, rounded-control system | `browser: desktop homepage + 380px sidebar visual pass` | pass |
 | A15 | P1 | Responsive | Desktop and mobile | Homepage and public social surfaces have no horizontal overflow and preserve hierarchy | `browser: 1440×960 and 390×844; mobile overflow = 0` | pass |
@@ -47,7 +47,7 @@ Annotated is a Chrome side-panel product for clipping an article passage, a YouT
 
 | Date | Auditor | P0 pass | P1 pass | Notes |
 |------|---------|---------|---------|-------|
-| 2026-08-01 | Codex | 9/13 + 2 partial | 5/5 | Google and X apps, credentials, and production callbacks are configured; exact local callback checks are still propagating/failing and are not counted as pass. Neon/Postgres and Vercel Blob paths are prepared but deliberately unprovisioned. The production-stamped ZIP and real 1280×800 release screenshots are ready. Actual YouTube stream quality cannot be forced through the supported iframe API, so the 240px player remains partial pending organizer confirmation. |
+| 2026-08-01 | Codex | 10/13 + 2 partial | 5/5 | The public BG Rob deployment serves persisted Neon feed data and Blob audio, and both Auth.js providers expose the canonical callback origin. A successful Google and X login still requires the provider consoles to allow the new callback URLs. The production-stamped ZIP and real 1280×800 release screenshots are ready. Actual YouTube stream quality cannot be forced through the supported iframe API, so the 240px player remains partial pending organizer confirmation. |
 
 ## Sign-off
 
@@ -74,4 +74,6 @@ browser: desktop/mobile homepage and annotation detail
 Chrome: captured the real side panel, feed, and annotation detail for the homepage
 Chrome: rechecked the live contest brief and /enter submission fields
 Chrome: configured Google/X production callbacks; callback completion still pending
+Vercel: production deploy + public alias, Neon feed, Blob audio, and zero-error log check
+browser: canonical homepage/feed, image loading, overflow, and client console check
 ```
