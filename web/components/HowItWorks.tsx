@@ -127,7 +127,7 @@ export default function HowItWorks() {
               <div className="relative aspect-[1.64/1] min-h-[220px] bg-[#f8f7f5]">
                 <Image
                   key={active.id}
-                  src={activeIndex < 2 ? "/screenshots/annotated-sidebar.png" : "/screenshots/annotated-annotation.png"}
+                  src={activeIndex < 2 ? "/screenshots/annotated-sidebar-hq.png" : "/screenshots/annotated-annotation-hq.png"}
                   alt={activeIndex < 2 ? "Annotated Chrome sidebar capture interface" : "A published Annotated page with commentary and source context"}
                   fill
                   unoptimized
@@ -141,7 +141,7 @@ export default function HowItWorks() {
               </div>
             </div>
 
-            <div className="absolute inset-x-4 bottom-4 rounded-[22px] bg-white/94 p-6 shadow-[0_25px_60px_-35px_rgba(19,20,46,.72)] backdrop-blur-sm sm:inset-x-8 sm:bottom-8 sm:p-8">
+            <div className="absolute inset-x-4 bottom-4 rounded-[22px] bg-white p-6 shadow-[0_25px_60px_-35px_rgba(19,20,46,.72)] sm:inset-x-8 sm:bottom-8 sm:p-8">
               <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--action-dark)]">{active.label}</p>
               <h3 className="mt-3 max-w-[19ch] text-[clamp(1.65rem,3vw,2.65rem)] font-medium leading-[1] tracking-[-0.055em]">{active.title}</h3>
               <p className="mt-4 max-w-[58ch] text-sm leading-[1.6] text-[var(--muted-ink)]">{active.body}</p>

@@ -135,7 +135,7 @@ export default async function Landing() {
                   </div>
                   <div className="relative min-w-0 overflow-hidden border-l border-black/[.08] bg-[#f8f7f5]">
                     <Image
-                      src="/screenshots/annotated-sidebar.png"
+                      src="/screenshots/annotated-sidebar-hq.png"
                       alt="The real Annotated Chrome side panel docked beside the feed"
                       fill
                       priority
