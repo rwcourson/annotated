@@ -82,6 +82,9 @@ export default async function Landing() {
               <Button size="lg" variant="outline" asChild>
                 <Link href="/feed">Explore the feed</Link>
               </Button>
+              <Button size="lg" variant="outline" asChild>
+                <Link href="/demo">Watch the one-minute demo</Link>
+              </Button>
             </div>
           </div>
         </div>
