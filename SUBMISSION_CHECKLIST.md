@@ -9,8 +9,8 @@ Run `node scripts/release-preflight.mjs` before any deployment review or submiss
 - [x] Neon project created and `DATABASE_PROVIDER` / `DATABASE_URL` set
 - [x] Vercel Blob store created and `BLOB_READ_WRITE_TOKEN` set
 - [x] `AUTH_SECRET`, Google OAuth, and X OAuth production credentials set on the Vercel project
-- [ ] Add Google and X production callbacks for `https://annotated-social.vercel.app`
-- [ ] Complete one successful Google and X sign-in after provider callback changes propagate
+- [x] Add Google and X production callbacks for `https://annotated-social.vercel.app`
+- [x] Complete one successful Google and X sign-in on the canonical production domain
 - [x] Canonical HTTPS site deployed at `https://annotated-social.vercel.app`
 - [x] Database initialized with the Postgres Prisma schema
 - [x] Redeploy and confirm Neon annotations plus Blob-hosted recorded audio persist
@@ -23,7 +23,7 @@ Run `node scripts/release-preflight.mjs` before any deployment review or submiss
 - [ ] Load the staged release directory unpacked in Chrome
 - [ ] Complete article, YouTube, and podcast journeys
 - [ ] Record commentary and confirm reconnect after restarting Chrome
-- [ ] Add production support email to `PRIVACY.md` and publish `/privacy`
+- [x] Publish the privacy disclosure with the annotation-specific claim and removal-request path
 - [ ] Obtain organizer confirmation that a policy-compliant 426×240 YouTube embed satisfies the “under 480p” requirement; the official iframe API cannot force stream rendition quality
 
 ## Contest entry

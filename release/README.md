@@ -19,6 +19,6 @@ Both screenshots were captured from the running application in Chrome and croppe
 
 ## Still required
 
-Do not upload or submit this bundle until the production site is deployed, OAuth is verified on the live domain, the privacy contact is filled in, and the staged extension completes the physical Chrome journey in `SUBMISSION_CHECKLIST.md`.
+Do not upload or submit this bundle until OAuth is verified on the live domain, the privacy and claim path is verified publicly, and the staged extension completes the physical Chrome journey in `SUBMISSION_CHECKLIST.md`.
 
 Run `node scripts/release-preflight.mjs` from the repository root for the authoritative machine-readable gate. A failing exit code is expected while hosted services, physical E2E, the demo video, or 240p evidence are missing.

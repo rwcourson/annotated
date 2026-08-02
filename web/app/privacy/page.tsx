@@ -45,8 +45,8 @@ export default function PrivacyPage() {
             <p className="mt-3 text-[var(--muted-ink)]">Published annotations are public by design and always link to their original source. Account data is stored in the production database, and recorded commentary is stored in managed object storage.</p>
           </section>
           <section>
-            <h2 className="text-2xl font-medium tracking-[-0.04em]">Questions or deletion</h2>
-            <p className="mt-3 text-[var(--muted-ink)]">A production support email will be published here before launch. Fair-use disputes can be submitted through the visible “File a claim” action on every annotation.</p>
+            <h2 className="text-2xl font-medium tracking-[-0.04em]">Requests and claims</h2>
+            <p className="mt-3 text-[var(--muted-ink)]">Annotated does not publish a general support email. Fair-use disputes, removal requests, and privacy concerns about published content can be submitted through the visible “File a claim” action on the relevant annotation.</p>
           </section>
           <Link href="/" className="text-action mt-2 w-fit font-semibold">Return home</Link>
         </div>

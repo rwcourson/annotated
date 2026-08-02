@@ -27,8 +27,8 @@ Published annotations, profiles, comments, and follows are public by design. Rec
 
 ## Retention and deletion
 
-Content remains available until it is deleted or the service is discontinued. Before public launch, the production deployment must provide a support address for deletion and privacy requests. Fair-use disputes can be submitted from the visible “File a claim” action on every annotation page.
+Content remains available until it is deleted or the service is discontinued. Fair-use disputes, removal requests, and privacy concerns about a published annotation can be submitted from the visible “File a claim” action on that annotation page. Claims are stored with the annotation so they can be reviewed against the original source.
 
-## Contact
+## Requests and claims
 
-Replace this section with the production support email before publishing the extension or submitting the contest entry.
+Annotated does not publish a general support email. Use the visible “File a claim” action on the relevant annotation to identify the exact content and source involved.

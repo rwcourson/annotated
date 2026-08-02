@@ -16,5 +16,5 @@ The contest form currently marks **Your name** and **Demo video link** as requir
 - Article, YouTube, and podcast journeys completed with the unpacked release extension
 - Organizer interpretation of the 240p requirement resolved
 - Public demo video uploaded and reviewed
-- Privacy contact added and `/privacy` verified publicly
+- Privacy disclosure and annotation-specific claim/removal path verified publicly
 - User explicitly approves submission

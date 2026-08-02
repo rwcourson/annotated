@@ -66,9 +66,9 @@ for (const screenshot of [
 
 const privacy = text("PRIVACY.md");
 check(
-  "Privacy support contact filled",
-  !privacy.includes("Replace this section") && /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i.test(privacy),
-  "Replace the placeholder with the approved public support email",
+  "Privacy request path documented",
+  !privacy.includes("Replace this section") && /File a claim/i.test(privacy) && /removal requests/i.test(privacy),
+  "Document the claim and removal-request path without a support-email placeholder",
 );
 
 const liveFeed = getJson(`${productionUrl}/api/feed`);
