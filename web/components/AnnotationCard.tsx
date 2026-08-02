@@ -4,6 +4,7 @@ import UserAvatar from "./Avatar";
 import TypeBadge from "./TypeBadge";
 import FollowButton from "./FollowButton";
 import ShareAnnotationButton from "./ShareAnnotationButton";
+import DeleteAnnotationButton from "./DeleteAnnotationButton";
 import { formatSeconds, timeAgo } from "@/lib/utils";
 
 export type CardAnnotation = {
@@ -101,6 +102,7 @@ export default function AnnotationCard({
           <span>{a.commentCount} {a.commentCount === 1 ? "comment" : "comments"}</span>
         </Link>
         <ShareAnnotationButton annotationId={a.id} />
+        {isOwn && <DeleteAnnotationButton annotationId={a.id} />}
         <a href={a.sourceUrl} target="_blank" rel="noopener noreferrer" className="icon-action ml-auto inline-flex min-h-10 items-center gap-1 rounded-full px-2 text-xs font-semibold text-[var(--action-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cobalt)] hover:[&_svg]:translate-x-0.5 hover:[&_svg]:-translate-y-0.5 [&_svg]:transition-transform">
           Original <ArrowUpRight className="h-4 w-4" />
         </a>

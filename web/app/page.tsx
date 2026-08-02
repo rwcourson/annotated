@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
-  ArrowUpRight,
   Check,
 } from "lucide-react";
 import { auth } from "@/auth";
@@ -11,24 +10,22 @@ import { Button } from "@/components/ui/button";
 import AnnotationCard from "@/components/AnnotationCard";
 import LandingEntrance from "@/components/LandingEntrance";
 import SiteFooter from "@/components/SiteFooter";
+import HowItWorks from "@/components/HowItWorks";
 
 const SOURCES = [
   {
-    number: "01",
     title: "YouTube",
     kicker: "Video",
     body: "Set the start and end. Clips stop at 90 seconds and keep the original YouTube timestamp.",
     meta: "≤90 seconds · 240px player",
   },
   {
-    number: "02",
     title: "The article",
     kicker: "Text",
     body: "Highlight the lines you care about. The headline, byline, date, and original URL come with them.",
     meta: "Passage · source metadata",
   },
   {
-    number: "03",
     title: "The podcast",
     kicker: "Audio",
     body: "Mark up to 90 seconds, then say why it stuck with you in text or in your own voice.",
@@ -169,8 +166,7 @@ export default async function Landing() {
           </div>
           <div className="grid gap-3">
             {SOURCES.map((source) => (
-              <article key={source.number} className="grid gap-5 rounded-[22px] bg-[#f7f4f2] p-6 sm:grid-cols-[3.5rem_1fr_auto] sm:gap-7">
-                <span className="text-xs font-semibold text-[var(--action-dark)]">{source.number}</span>
+              <article key={source.title} className="grid gap-5 rounded-[22px] bg-[#f7f4f2] p-6 sm:grid-cols-[1fr_auto] sm:gap-7">
                 <div>
                   <p className="eyebrow">{source.kicker}</p>
                   <h3 className="mt-2 text-2xl font-medium tracking-[-0.045em] text-[var(--ink)]">{source.title}</h3>
@@ -183,37 +179,7 @@ export default async function Landing() {
         </div>
       </section>
 
-      <section id="how-it-works" className="page-wrap scroll-mt-24 py-16 sm:py-20">
-        <div className="grid overflow-hidden rounded-[28px] bg-[#ece9ff] lg:grid-cols-[1.03fr_.97fr]">
-          <div className="relative min-h-[420px] lg:min-h-[560px]">
-            <Image
-              src="/art/pixel-depth-hq.webp"
-              alt="Blue, cyan, green, and pastel pixel field"
-              fill
-              unoptimized
-              sizes="(min-width: 1280px) 627px, (min-width: 1024px) 52vw, calc(100vw - 1.5rem)"
-              className="object-cover"
-            />
-            <div className="absolute left-5 top-5 rounded-full bg-white/80 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] backdrop-blur">Source → signal</div>
-          </div>
-          <div className="flex flex-col justify-between bg-[linear-gradient(145deg,#fff9f7_0%,#f1ecff_50%,#e8f6ff_100%)] p-8 text-[var(--ink)] sm:p-12 lg:p-14">
-            <div>
-              <p className="eyebrow">How it works</p>
-              <h2 className="mt-5 max-w-[10ch] text-4xl font-medium leading-[.94] tracking-[-0.06em] sm:text-6xl">Clip it without leaving the page.</h2>
-            </div>
-            <ol className="mt-12 grid gap-2">
-              {["Pick the page or media", "Select the exact moment", "Add text or record your voice", "Publish a public, linked page"].map((step, index) => (
-                <li key={step} className="flex items-center gap-5 rounded-2xl bg-white/62 px-4 py-3.5 text-sm shadow-[0_10px_35px_-30px_rgba(42,31,82,.55)] backdrop-blur-sm">
-                  <span className="text-[var(--action-dark)]">0{index + 1}</span><span>{step}</span>
-                </li>
-              ))}
-            </ol>
-            <Button size="lg" variant="warm" asChild className="mt-10 self-start">
-              <Link href="/connect">Get the Chrome sidebar <ArrowUpRight /></Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      <HowItWorks />
 
       {latest.length > 0 && (
         <section className="border-y hairline bg-white py-16 sm:py-20">

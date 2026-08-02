@@ -32,7 +32,7 @@ export default async function Nav() {
             <Link href="/feed">Discover</Link>
           </Button>
           <Button variant="ghost" size="sm" asChild className="hidden md:inline-flex">
-            <Link href="#how-it-works">How it works</Link>
+            <Link href="/#how-it-works">How it works</Link>
           </Button>
           <Button
             variant="ghost"

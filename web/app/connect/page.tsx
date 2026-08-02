@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
+import { AppWindow, Check, Highlighter, LockKeyhole } from "lucide-react";
 import { auth } from "@/auth";
 import ConnectClient from "@/components/ConnectClient";
 
@@ -35,11 +36,10 @@ export default async function ConnectPage({
         <ConnectClient extensionNonce={extensionNonce} />
       </div>
 
-      <section className="surface mt-5 p-7">
-        <h2 className="text-sm font-semibold tracking-tight text-zinc-900">
-          Install (developer mode)
-        </h2>
-        <ol className="mt-4 list-decimal space-y-3 pl-5 text-sm leading-relaxed text-zinc-600">
+      <div className="mt-5 grid gap-5 md:grid-cols-[1.15fr_.85fr]">
+      <section className="surface p-7">
+        <div className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-full bg-[var(--soft)]"><AppWindow className="h-4 w-4 text-[var(--action-dark)]" /></span><div><p className="eyebrow">Local setup</p><h2 className="mt-1 text-lg font-semibold tracking-[-.035em] text-[var(--ink)]">Install in developer mode</h2></div></div>
+        <ol className="mt-6 list-decimal space-y-3 pl-5 text-sm leading-relaxed text-[var(--muted-ink)] marker:font-semibold marker:text-[var(--action-dark)]">
           <li>
             Open{" "}
             <code className="rounded-md bg-zinc-100 px-1.5 py-0.5 text-xs text-zinc-800">
@@ -71,6 +71,15 @@ export default async function ConnectPage({
           </li>
         </ol>
       </section>
+      <aside className="rounded-[20px] bg-[var(--ink)] p-6 text-white">
+        <p className="text-[10px] font-semibold uppercase tracking-[.14em] text-white/48">After you connect</p>
+        <div className="mt-6 space-y-5">
+          <div className="flex gap-3"><Highlighter className="mt-0.5 h-4 w-4 shrink-0 text-[#ff806b]" /><div><p className="text-sm font-semibold">Clip without leaving the page</p><p className="mt-1 text-xs leading-relaxed text-white/52">Your source stays visible beside the side panel.</p></div></div>
+          <div className="flex gap-3"><Check className="mt-0.5 h-4 w-4 shrink-0 text-[#ff806b]" /><div><p className="text-sm font-semibold">Publish to your profile</p><p className="mt-1 text-xs leading-relaxed text-white/52">New annotations appear in your public feed immediately.</p></div></div>
+          <div className="flex gap-3"><LockKeyhole className="mt-0.5 h-4 w-4 shrink-0 text-[#ff806b]" /><div><p className="text-sm font-semibold">You stay in control</p><p className="mt-1 text-xs leading-relaxed text-white/52">Annotated reads a page only when you choose to capture it.</p></div></div>
+        </div>
+      </aside>
+      </div>
     </div>
   );
 }

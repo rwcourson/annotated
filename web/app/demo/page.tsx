@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SiteFooter from "@/components/SiteFooter";
 
 const fallbackVideoUrl =
   "https://fczubz6n6ecakkyv.public.blob.vercel-storage.com/demo/annotated-bounty-demo.mp4";
@@ -22,7 +23,8 @@ export default function DemoPage() {
   const videoUrl = process.env.DEMO_VIDEO_URL || fallbackVideoUrl;
 
   return (
-    <div className="page-wrap py-10 sm:py-14">
+    <>
+    <div className="page-wrap py-10 pb-20 sm:py-14 sm:pb-24">
       <Link
         href="/"
         className="text-action inline-flex items-center gap-2 text-sm font-semibold"
@@ -73,6 +75,22 @@ export default function DemoPage() {
           </div>
         </div>
       </section>
+
+      <section className="mt-12 grid gap-3 sm:grid-cols-3">
+        {[
+          ["Capture", "Keep a passage or set a precise media window."],
+          ["Comment", "Add the thought that made the moment worth saving."],
+          ["Publish", "Share a clean page with the original link attached."],
+        ].map(([title, body], index) => (
+          <article key={title} className="rounded-[20px] bg-white p-5">
+            <p className="text-[10px] font-semibold uppercase tracking-[.13em] text-[var(--action-dark)]">0:{index === 0 ? "00" : index === 1 ? "18" : "42"}</p>
+            <h2 className="mt-3 text-xl font-semibold tracking-[-.04em] text-[var(--ink)]">{title}</h2>
+            <p className="mt-2 text-sm leading-relaxed text-[var(--muted-ink)]">{body}</p>
+          </article>
+        ))}
+      </section>
     </div>
+    <SiteFooter />
+    </>
   );
 }

@@ -10,6 +10,7 @@ import ClipPlayer from "@/components/ClipPlayer";
 import ClaimButton from "@/components/ClaimButton";
 import CommentThread from "@/components/CommentThread";
 import FollowButton from "@/components/FollowButton";
+import DeleteAnnotationButton from "@/components/DeleteAnnotationButton";
 import { Button } from "@/components/ui/button";
 import { formatDate, formatSeconds, timeAgo } from "@/lib/utils";
 
@@ -68,7 +69,11 @@ export default async function AnnotationPage({
           <Link href={a.user.username ? `/u/${a.user.username}` : "#"} className="block truncate text-sm font-semibold text-[var(--ink)] hover:underline hover:underline-offset-4">{a.user.name ?? "anon"}</Link>
           <p className="mt-0.5 text-xs text-[var(--muted-ink)]">{a.user.username ? `@${a.user.username} · ` : ""}Annotated {timeAgo(a.createdAt)}</p>
         </div>
-        {!isOwn && <FollowButton userId={a.userId} initialFollowing={following} isAuthed={!!meId} />}
+        {isOwn ? (
+          <DeleteAnnotationButton annotationId={a.id} redirectTo="/feed" />
+        ) : (
+          <FollowButton userId={a.userId} initialFollowing={following} isAuthed={!!meId} />
+        )}
       </div>
 
       {/* header */}

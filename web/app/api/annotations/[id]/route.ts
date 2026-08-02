@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getAuthUser } from "@/lib/auth-api";
 import { prisma } from "@/lib/db";
 import { serializeAnnotation } from "@/lib/serialize";
 
@@ -36,4 +37,31 @@ export async function GET(
       comments: annotation.comments,
     }),
   });
+}
+
+// DELETE /api/annotations/[id] — auth; only the annotation owner may delete.
+export async function DELETE(
+  req: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const user = await getAuthUser(req);
+  if (!user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const { id } = await params;
+  const annotation = await prisma.annotation.findUnique({
+    where: { id },
+    select: { userId: true },
+  });
+
+  if (!annotation) {
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
+  if (annotation.userId !== user.id) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
+  await prisma.annotation.delete({ where: { id } });
+  return NextResponse.json({ deleted: true });
 }

@@ -94,6 +94,23 @@
 
   .page-wrap { width: min(calc(100% - 2rem), 76rem); margin-inline: auto; }
 
+  .skip-link {
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    z-index: 200;
+    padding: 0.7rem 1rem;
+    border-radius: 999px;
+    background: var(--ink);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transform: translateY(-180%);
+    transition: transform 160ms ease-out;
+  }
+
+  .skip-link:focus { transform: translateY(0); }
+
   .eyebrow {
     @apply text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--muted-ink)];
   }

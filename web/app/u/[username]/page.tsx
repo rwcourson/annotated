@@ -2,11 +2,13 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { CalendarDays, Link2 } from "lucide-react";
+import Link from "next/link";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/db";
 import UserAvatar from "@/components/Avatar";
 import AnnotationCard from "@/components/AnnotationCard";
 import FollowButton from "@/components/FollowButton";
+import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = { title: "Profile" };
 
@@ -104,7 +106,7 @@ export default async function ProfilePage({
                 currentUserId={meId}
               />
             ))}
-            {user.annotations.length === 0 && <div className="rounded-[22px] border hairline bg-white p-14 text-center text-sm text-[var(--muted-ink)]">No annotations yet.</div>}
+            {user.annotations.length === 0 && <div className="rounded-[22px] border hairline bg-white p-14 text-center"><p className="text-xl font-semibold tracking-[-.04em] text-[var(--ink)]">Nothing saved here yet.</p><p className="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-[var(--muted-ink)]">{isOwn ? "Your first source-linked moment will appear here." : "Check back when this annotator publishes their first moment."}</p>{isOwn && <Button asChild className="mt-6"><Link href="/new">Create your first annotation</Link></Button>}</div>}
           </div>
         </main>
 

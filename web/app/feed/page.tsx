@@ -82,7 +82,10 @@ export default async function FeedPage({
       </header>
 
       <div className="mt-7">
-        <FeedViewTabs value={view} isAuthed={!!meId} />
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <FeedViewTabs value={view} isAuthed={!!meId} />
+          <p className="text-xs text-[var(--muted-ink)]"><span className="font-semibold tabular-nums text-[var(--ink)]">{annotations.length}</span> {annotations.length === 1 ? "annotation" : "annotations"} in this view</p>
+        </div>
       </div>
 
       <div className="mt-7 grid gap-8 lg:grid-cols-[minmax(0,1fr)_290px] lg:items-start">

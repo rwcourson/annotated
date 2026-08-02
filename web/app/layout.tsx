@@ -69,8 +69,9 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen font-sans text-zinc-900">
+        <a href="#main-content" className="skip-link">Skip to content</a>
         <Nav />
-        <main>{children}</main>
+        <main id="main-content">{children}</main>
         <Toaster position="bottom-center" />
       </body>
     </html>
